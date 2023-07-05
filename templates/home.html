@@ -9,8 +9,19 @@
     <style>
         #banner {
             height: 360px;
-            width: 100%;
+            width: 150%;
             object-fit: cover;
+            background-image: url(http://127.0.0.1:5000/static/banner1.jpg);
+            background-size: auto;
+        }
+
+        #font {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        #headingfont {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 60px;
         }
     </style>
     <title>GK Careers</title>
@@ -19,8 +30,14 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center mt-2 mb-4">GK Careers</h1>
-        <img src="http://127.0.0.1:5000/static/banner1.jpg" id="banner" class="img-fluid">
+        <h1 class="text-center mt-4 mb-4" id="headingfont">GK Careers</h1>
+        <img src="http://127.0.0.1:5000/static/banner1.jpg" id="banner" class="img-fluid opacity-100">
+        <figure class="text-end">
+            <blockquote class="blockquote mt-5 text-center">
+                <p id="font">You have the skills. We have the opportunities. Let’s work together.</p>
+            </blockquote>
+        </figure>
+
         <h2 class="text-center mt-5 mb-4">About Jovian</h2>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
             labore et dolore
@@ -31,10 +48,26 @@
             est
             laborum.</p>
         <h2 class="text-center mt-2 mb-4">Open Positions</h2>
-        <p>SHOW JOBS HERE</p>
-        <div class="text-center">
+
+        <div style="margin-bottom: 30px;">
+
+            {% for job in jobs %}
+
+            <div style="margin-bottom: 16px;">
+                <h4 style="color: rgb(120, 120, 120); margin-bottom: 4px;">{{job['title']}}</h4>
+                <div><b>Location:</b>{{job['location']}}</div>
+                {% if 'salary' in job %}
+                <div><b>Salary:</b> {{job['salary']}}</div>
+
+                {% endif%}
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class=" text-center">
             <button class="btn btn-danger btn-lg">Contact US</button>
-            <p class="mt-4">
+            <p class="mt-4 text-decoration-underline">
                 Copyright 2022,GK
             </p>
         </div>
